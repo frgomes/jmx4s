@@ -17,7 +17,7 @@ Scala 2.10 and 2.11 versions are available at JCenter.
 
 .. code-block:: scala
 
-  libraryDependencies += "net.xkbm.jmx4s" %% "jmx4s" % "0.1.0"
+  libraryDependencies += "info.rgomes.jmx4s" %% "jmx4s" % "0.1.0"
 
 
 Example
@@ -29,7 +29,7 @@ You can instrument your classes like so:
 
   package mydomain.myapp
   
-  import net.xkbm.jmx4s.{Manageable, JMX}
+  import info.rgomes.jmx4s.{Manageable, JMX}
   
   object Zoo {
     def main(args: Array[String]) {
