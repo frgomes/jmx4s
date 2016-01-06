@@ -13,7 +13,7 @@ Apparently, it does not work with case classes.
 Installation
 ------------
 
-Scala 2.10 and 2.11 versions are available at JCenter.
+Only Scala 2.11 version is supported. Binaries are available at JCenter.
 
 .. code-block:: scala
 
