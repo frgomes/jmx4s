@@ -2,12 +2,17 @@
 // build.sbt
 //
 
+import sbt._
+import Keys._
+
+
 val appOrg  = "info.rgomes"
 val appName = "jmx4s"
-val appRepo = appOrg
 val appDesc = "Simplistic JMX for Scala."
-val appLicenses = ("BSD Simplified", url("http://opensource.org/licenses/BSD-2-Clause"))
-val appLabels   = Seq("scala", "jmx")
+val appLicenses   = Seq( ("BSD Simplified", url("http://opensource.org/licenses/BSD-2-Clause")) )
+val appLabels     = Seq( "scala", "jmx" )
+val appRepo       = appOrg     // if not a sbtPlugin, falls back to "maven"
+val appMavenStyle = true // if not a sbtPlugin, falls back to false
 val appExtra = 
       <scm>
         <url>git@github.com:frgomes/{appName}.git</url>
@@ -29,14 +34,14 @@ def newModule(module: String): Project =
       name         := s"${appName}-${module}",
       version      := (version in ThisBuild).value,
       description  := appDesc,
-      licenses     += appLicenses,
-      pomExtra     := appExtra )
+      licenses     := appLicenses,
+      pomExtra     := appExtra)
     .settings(
-      publishMavenStyle := true,
+      publishMavenStyle := appMavenStyle,
       publishArtifact in Test := false)
     .settings(
       name                 in bintray := s"${name.value}-${module}",
-      bintrayRepository    in bintray := appOrg,
+      bintrayRepository    in bintray := appRepo,
       bintrayPackageLabels in bintray := appLabels,
       bintrayOrganization  in bintray := None)
 
