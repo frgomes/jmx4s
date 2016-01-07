@@ -47,7 +47,7 @@ You can instrument your classes like so:
   
   class Animal(species: String, name: String) extends JMX {
     @Manageable
-    def info: String = s"name: ${name} species: ${species}"
+    override def toString(): String = s"${name} (${species})"
   
     @Manageable
     def say: String =
