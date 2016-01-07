@@ -9,6 +9,7 @@ import Keys._
 val appOrg  = "info.rgomes"
 val appName = "jmx4s"
 val appDesc = "Simplistic JMX for Scala."
+val appURL  = s"http://github.com/frgomes/${appName}"
 val appLicenses   = Seq( ("BSD Simplified", url("http://opensource.org/licenses/BSD-2-Clause")) )
 val appLabels     = Seq( "scala", "jmx" )
 val appRepo       = appOrg     // if not a sbtPlugin, falls back to "maven"
@@ -34,10 +35,12 @@ def newModule(module: String): Project =
       name         := s"${appName}-${module}",
       version      := (version in ThisBuild).value,
       description  := appDesc,
+      homepage     := Some(url(appURL)),
       licenses     := appLicenses,
       pomExtra     := appExtra)
     .settings(
-      publishMavenStyle := appMavenStyle,
+      resolvers               += Resolver.url("frgomes at bintray", url("http://dl.bintray.com/frgomes/maven"))(Resolver.ivyStylePatterns),
+      publishMavenStyle       := appMavenStyle,
       publishArtifact in Test := false)
     .settings(
       name                 in bintray := s"${name.value}-${module}",
